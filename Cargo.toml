@@ -1,0 +1,44 @@
+[package]
+name = "swapper"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+exhaustive-tests = []
+regtest = []
+signet = []
+
+[dependencies]
+curv = { package = "curv-kzen", version = "0.9.0" }
+log = "0.4"
+mpecdsa = { git = "https://github.com/GeneFerneau/mpecdsa", version = "0.1.0" }
+round-based = { version = "0.1", features = [] }
+sha2 = "0.9"
+core2 = { version = "0.3.0", default-features = false }
+
+[dependencies.bitcoin]
+#path = "../rust-bitcoin"
+git = "https://github.com/GeneFerneau/rust-bitcoin"
+branch = "coinswap"
+features = ["rand", "no-std", "bitcoinconsensus"]
+
+[dependencies.bitcoincore-rpc]
+git = "https://github.com/GeneFerneau/rust-bitcoincore-rpc"
+branch = "coinswap"
+version = "0.14"
+
+[dependencies.secp256k1-zkp]
+version = "0.4.0"
+#path = "../rust-secp256k1-zkp"
+git = "https://github.com/GeneFerneau/rust-secp256k1-zkp-1"
+branch = "coinswap"
+default-features = false
+features = ["std"]
+
+[dev-dependencies]
+rand = { version = "0.6", default-features = false }
+round-based = { version = "0.1", features = ["dev"] }
+serde = { version = "1", features = [ "derive" ] }
+serde_json = "1"
